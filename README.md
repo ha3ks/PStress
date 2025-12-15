@@ -53,18 +53,7 @@ python cpu_stress_test.py -d 0
 - `-d, --duration <seconds>`: Duration in seconds to run the test (default: 60, use 0 for continuous)
 - `-v, --verbose`: Show per-core performance breakdown (CPU) or detailed GPU info
 - `--mode <cpu|gpu>`: Test mode - 'cpu' for CPU testing (default) or 'gpu' for GPU testing
-- `-h, --help`: Show help message 2 --duration 120
-### Command-line Arguments
-
-- `-c, --cores <number>`: Number of CPU cores to use (default: all available)
-- `-d, --duration <seconds>`: Duration in seconds to run the test (default: 60, use 0 for continuous)
-- `-v, --verbose`: Show per-core performance breakdown during the test
-- `-h, --help`: Show help message
-### Command-line Arguments
-
-- `-c, --cores <number>`: Number of CPU cores to use (default: all available)
-- `-d, --duration <seconds>`: Duration in seconds to run the test (default: 60)
-- `-h, --help`: Show help message
+- `-h, --help`: Show help message 2
 
 ## Examples
 

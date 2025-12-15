@@ -25,10 +25,11 @@ A Python-based stress testing tool for both CPUs and GPUs with real-time perform
   - PyTorch with CUDA: `pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118`
   - CuPy: `pip install cupy-cuda11x` (replace 11x with your CUDA version)
 
+## Usage
+
 ### Basic Usage
 
 **CPU Testing** (default):
-Run with default settings (all cores, 60 seconds):
 ```bash
 python cpu_stress_test.py
 ```
@@ -38,14 +39,10 @@ python cpu_stress_test.py
 python cpu_stress_test.py --mode gpu -d 60
 ```
 
-Run continuously until stopped with Ctrl+C:
+**Continuous mode (run until Ctrl+C):**
 ```bash
 python cpu_stress_test.py -d 0
 ```
-
-### Advanced Options
-
-### Advanced Options
 
 ### Command-line Arguments
 
@@ -53,22 +50,11 @@ python cpu_stress_test.py -d 0
 - `-d, --duration <seconds>`: Duration in seconds to run the test (default: 60, use 0 for continuous)
 - `-v, --verbose`: Show per-core performance breakdown (CPU) or detailed GPU info
 - `--mode <cpu|gpu>`: Test mode - 'cpu' for CPU testing (default) or 'gpu' for GPU testing
-- `-h, --help`: Show help message 2 --duration 120
-### Command-line Arguments
-
-- `-c, --cores <number>`: Number of CPU cores to use (default: all available)
-- `-d, --duration <seconds>`: Duration in seconds to run the test (default: 60, use 0 for continuous)
-- `-v, --verbose`: Show per-core performance breakdown during the test
-- `-h, --help`: Show help message
-### Command-line Arguments
-
-- `-c, --cores <number>`: Number of CPU cores to use (default: all available)
-- `-d, --duration <seconds>`: Duration in seconds to run the test (default: 60)
 - `-h, --help`: Show help message
 
-## Examples
+### Examples
 
-**Test all cores for 1 minute:**
+**Test all cores for 1 minute (default):**
 ```bash
 python cpu_stress_test.py
 ```
@@ -78,10 +64,6 @@ python cpu_stress_test.py
 python cpu_stress_test.py -d 600
 ```
 
-**Continuous mode (run until Ctrl+C):**
-```bash
-python cpu_stress_test.py -d 0
-```
 **Verbose mode with per-core breakdown:**
 ```bash
 python cpu_stress_test.py -v -d 30
@@ -89,7 +71,8 @@ python cpu_stress_test.py -v -d 30
 
 ## How It Works
 
-**CPU Mode:**
+### CPU Mode
+
 The stress tester spawns multiple worker processes (one per CPU core by default) that perform intensive mathematical calculations including:
 
 - Square root and power operations
@@ -102,7 +85,8 @@ Each worker runs continuously for the specified duration (or indefinitely in con
 - **Cumulative FLOPS**: Total operations performed
 - **Color-coded metrics**: Performance scaled automatically (FLOPS → KFLOPS → MFLOPS → GFLOPS)
 
-**GPU Mode:**
+### GPU Mode
+
 The GPU stress tester performs large matrix multiplications (4096x4096) using CUDA:
 
 - Uses PyTorch or CuPy for GPU acceleration
@@ -110,7 +94,11 @@ The GPU stress tester performs large matrix multiplications (4096x4096) using CU
 - Reports performance in TFLOPS (Teraflops)
 - Fully utilizes GPU compute capabilities
 - Monitors GPU temperature and utilization (with verbose mode)
-The stress tester spawns multiple worker processes (one per CPU core by default) that perform intensive mathematical calculations including:
+
+## Stopping the Test
+
+Press `Ctrl+C` to interrupt the test at any time.
+
 ## Use Cases
 
 - **Thermal testing**: Check CPU/GPU cooling performance under load
@@ -122,25 +110,7 @@ The stress tester spawns multiple worker processes (one per CPU core by default)
 ## Warning
 
 This tool will push your CPU/GPU to 100% utilization. Monitor your system temperatures and ensure adequate cooling. Not recommended for extended periods on laptops or systems with insufficient cooling.
-- Square root and power operations
-- Factorial calculations
-- List comprehensions with exponential operations
 
-Each worker runs continuously for the specified duration, reporting its progress when complete.
+## Notes
 
-## Stopping the Test
-
-Press `Ctrl+C` to interrupt the test at any time.
-
-## Use Cases
-
-- **Thermal testing**: Check CPU cooling performance under load
-- **Stability testing**: Verify system stability after overclocking
-- **Performance benchmarking**: Compare CPU performance across systems
-- **Burn-in testing**: Stress test new hardware
-
-## Warning
-
-This tool will push your CPU to 100% utilization. Monitor your system temperatures and ensure adequate cooling. Not recommended for extended periods on laptops or systems with insufficient cooling.
-
-This project uses some Vibe Coded atributes (mainly math as I suck at math) and I cannot test the GPU option as I have integrated graphics.
+This project uses some Vibe Coded attributes (mainly math as I suck at math) and I cannot test the GPU option as I have integrated graphics.
